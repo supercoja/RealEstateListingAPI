@@ -1,4 +1,4 @@
-namespace RealEstateListing.Services;
+namespace RealEstateListing.Services.Interfaces;
 
 public interface IUnitOfWork : IDisposable
 {

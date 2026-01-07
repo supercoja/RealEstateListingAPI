@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RealEstateListingApi", "Rea
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealEstateListing.Domain", "..\RealEstateListing.Domain\RealEstateListing.Domain\RealEstateListing.Domain.csproj", "{0F1A9E01-DB36-4A94-BE3A-5BE84D076588}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealEstateListing.Mapping", "..\RealEstateListing.Mapping\RealEstateListing.Mapping\RealEstateListing.Mapping.csproj", "{7DA1E32B-FB68-42DD-895E-E110E142396C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealEstateListing.Services", "..\RealEstateListing.Services\RealEstateListing.Services\RealEstateListing.Services.csproj", "{EF98BBF2-8F48-4AEE-AD5D-58621A5E8F52}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealEstateListing.Infrastructure", "..\RealEstateListing.Infrastructure\RealEstateListing.Infrastructure\RealEstateListing.Infrastructure.csproj", "{56C5C42D-8EEE-4505-9F30-0BF85D8FB078}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,14 +25,14 @@ Global
 		{0F1A9E01-DB36-4A94-BE3A-5BE84D076588}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F1A9E01-DB36-4A94-BE3A-5BE84D076588}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F1A9E01-DB36-4A94-BE3A-5BE84D076588}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7DA1E32B-FB68-42DD-895E-E110E142396C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7DA1E32B-FB68-42DD-895E-E110E142396C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7DA1E32B-FB68-42DD-895E-E110E142396C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7DA1E32B-FB68-42DD-895E-E110E142396C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EF98BBF2-8F48-4AEE-AD5D-58621A5E8F52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EF98BBF2-8F48-4AEE-AD5D-58621A5E8F52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF98BBF2-8F48-4AEE-AD5D-58621A5E8F52}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF98BBF2-8F48-4AEE-AD5D-58621A5E8F52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56C5C42D-8EEE-4505-9F30-0BF85D8FB078}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56C5C42D-8EEE-4505-9F30-0BF85D8FB078}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56C5C42D-8EEE-4505-9F30-0BF85D8FB078}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56C5C42D-8EEE-4505-9F30-0BF85D8FB078}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,7 +1,7 @@
-﻿using RealEstateListing.Domain;
+using RealEstateListing.Domain;
 using RealEstateListingApi.Models;
 
-namespace RealEstateListing.Mapping;
+namespace RealEstateListingApi.Mapping;
 
 public static class MappingExtensions
 {
@@ -25,4 +25,4 @@ public static class MappingExtensions
             Description = createDto.Description                                    
         };                                                                         
     }                                                                              
-}                                   
+}                          

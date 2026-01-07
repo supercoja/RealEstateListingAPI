@@ -1,7 +1,9 @@
 using Microsoft.EntityFrameworkCore;
-using RealEstateListingApi.Data;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
+using RealEstateListing.Infrastructure;
+using RealEstateListing.Infrastructure.Data;
+using RealEstateListing.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseInMemoryDatabase("RealEstateListings"));
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();   
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
