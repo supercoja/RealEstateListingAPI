@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using RealEstateListing.Domain;
 using RealEstateListingApi.Models;
 
 namespace RealEstateListingApi.Data

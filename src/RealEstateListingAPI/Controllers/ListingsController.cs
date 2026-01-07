@@ -7,7 +7,7 @@ using System.Linq;
 namespace RealEstateListingApi.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/Listings")]
     public class ListingsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -20,7 +20,7 @@ namespace RealEstateListingApi.Controllers
         // Tag this operation as "Listings Retrieval"
         [HttpGet]
         [Tags("Listings Retrieval")]
-        public ActionResult<IEnumerable<Listing>> GetAllListings()
+        public ActionResult<IEnumerable<ListingDto>> GetAllListings()
         {
             return _context.Listings.ToList();
         }
@@ -28,7 +28,7 @@ namespace RealEstateListingApi.Controllers
         // Tag this operation as "Listings Management"
         [HttpPost]
         [Tags("Listings Management")]
-        public ActionResult<Listing> AddListing([FromBody] Listing listing)
+        public ActionResult<ListingDto> AddListing([FromBody] CreateListingDto listing)
         {
             _context.Listings.Add(listing);
             _context.SaveChanges();
@@ -38,7 +38,7 @@ namespace RealEstateListingApi.Controllers
         // Tag this operation as "Listings Retrieval"
         [HttpGet("{id}")]
         [Tags("Listings Retrieval")]
-        public ActionResult<Listing> GetListingById(string id)
+        public ActionResult<ListingDto> GetListingById(string id)
         {
             var listing = _context.Listings.FirstOrDefault(l => l.Id == id);
             if (listing == null)
