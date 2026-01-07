@@ -18,11 +18,6 @@ public static class MappingExtensions
 
     public static Listing ToEntity(this CreateListingDto createDto)
     {
-        return new Listing
-        {
-            Title = createDto.Title,                                               
-            Price = createDto.Price,                                               
-            Description = createDto.Description                                    
-        };                                                                         
+        return new Listing(createDto.Id, createDto.Title, createDto.Price, createDto.Description);
     }                                                                              
 }                          

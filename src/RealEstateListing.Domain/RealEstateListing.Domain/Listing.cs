@@ -2,8 +2,19 @@
 
 public class Listing
 {
-    public string Id { get;  set; } = string.Empty;  // Default to empty string if nulls aren't allowed
-    public string Title { get;  set; } = string.Empty;
-    public decimal Price { get;  set; }  // Decimal is a value type and non-nullable by default
-    public string? Description { get;  set; }  // Mark as nullable if appropriate
+    public string Id { get; private set; }
+    public string Title { get; internal set; }
+    public decimal Price { get; internal set; }
+    public string? Description { get; internal set; }
+
+    // Private parameterless constructor for EF Core
+    private Listing() { }
+    
+    public Listing(string id, string title, decimal price, string? description)
+    {
+        Id = id;
+        Title = title;
+        Price = price;
+        Description = description;
+    }
 }

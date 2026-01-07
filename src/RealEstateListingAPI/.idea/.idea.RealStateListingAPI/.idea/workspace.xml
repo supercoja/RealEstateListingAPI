@@ -9,21 +9,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6461735c-83a7-4a66-9342-f38a2c197b52" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../RealEstateListing.Infrastructure/RealEstateListing.Infrastructure/Repositories/ListingRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RealEstateListing.Infrastructure/RealEstateListing.Infrastructure/UnitOfWork.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../RealEstateListing.Domain/RealEstateListing.Domain/Listing.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../RealEstateListing.Domain/RealEstateListing.Domain/Listing.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RealEstateListing.Mapping/RealEstateListing.Mapping/Mapping/MappingExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Mapping/MappingExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RealEstateListing.Mapping/RealEstateListing.Mapping/RealEstateListing.Mapping.csproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RealEstateListing.Services/RealEstateListing.Services/Interfaces/IGenericRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../RealEstateListing.Services/RealEstateListing.Services/Interfaces/IGenericRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RealEstateListing.Services/RealEstateListing.Services/Interfaces/IListingRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../RealEstateListing.Services/RealEstateListing.Services/Interfaces/IListingRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RealEstateListing.Services/RealEstateListing.Services/Interfaces/IUnitOfWork.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../RealEstateListing.Services/RealEstateListing.Services/Interfaces/IUnitOfWork.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RealEstateListing.Services/RealEstateListing.Services/RealEstateListing.Services.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../RealEstateListing.Services/RealEstateListing.Services/RealEstateListing.Services.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.RealStateListingAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RealStateListingAPI/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/ListingsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/ListingsController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/ApplicationDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../RealEstateListing.Infrastructure/RealEstateListing.Infrastructure/Data/ApplicationDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RealEstateListingApi.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/RealEstateListingApi.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RealStateListingAPI.sln" beforeDir="false" afterPath="$PROJECT_DIR$/RealStateListingAPI.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mapping/MappingExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Mapping/MappingExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/CreateListingDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/CreateListingDto.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,10 +29,10 @@
     <setting file="file://$PROJECT_DIR$/../RealEstateListing.Infrastructure/RealEstateListing.Infrastructure/Repositories/ListingRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../RealEstateListing.Infrastructure/RealEstateListing.Infrastructure/UnitOfWork.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 3
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="37uVoA9r6Vp6BBnmvQRU1wkQr9W" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -51,19 +41,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "features/thiago.almeida/refactoring",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;features/thiago.almeida/refactoring&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.RealEstateListingApi: http">
     <configuration name="RealEstateListingApi: http" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/RealEstateListingApi.csproj" />
@@ -104,7 +94,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1767753119406</updated>
-      <workItem from="1767753123898" duration="6734000" />
+      <workItem from="1767753123898" duration="7476000" />
+      <workItem from="1767803801858" duration="699000" />
     </task>
     <servers />
   </component>

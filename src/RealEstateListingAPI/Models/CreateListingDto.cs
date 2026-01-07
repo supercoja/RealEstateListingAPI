@@ -4,6 +4,9 @@ namespace RealEstateListingApi.Models
 {                                                                                                                                                                                         
     public class CreateListingDto
     {
+       [Required(ErrorMessage = "Id is required.")]
+       public string Id { get; set; } = string.Empty;
+
        [Required(ErrorMessage = "Title is required.")]
        [StringLength(100, MinimumLength = 5, ErrorMessage = "Title must be between 5 and 100 characters.")]
        public string Title { get; set; } = string.Empty;
