@@ -11,8 +11,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6461735c-83a7-4a66-9342-f38a2c197b52" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.RealStateListingAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RealStateListingAPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/ListingsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/ListingsController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RealStateListingAPI.sln" beforeDir="false" afterPath="$PROJECT_DIR$/RealStateListingAPI.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +108,7 @@
       <option name="presentableId" value="Default" />
       <updated>1767753119406</updated>
       <workItem from="1767753123898" duration="7476000" />
-      <workItem from="1767803801858" duration="3089000" />
+      <workItem from="1767803801858" duration="5162000" />
     </task>
     <servers />
   </component>
