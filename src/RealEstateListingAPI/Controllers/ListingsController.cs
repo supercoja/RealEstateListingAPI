@@ -51,14 +51,22 @@ namespace RealEstateListingApi.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<ListingDto>> AddListing([FromBody] CreateListingDto createDto)
         {
-            var newListing = createDto.ToEntity();
-            
-            await _unitOfWork.Listings.AddAsync(newListing);
-            await _unitOfWork.CompleteAsync();
+            var exits = await _unitOfWork.Listings.GetByIdAsync(createDto.Id);
+            if (exits != null)
+            {
+                return BadRequest($"Listing with ID {createDto.Id} already exists.");
+            }
+            else
+            {
+                var newListing = createDto.ToEntity();
 
-            var createdListingDto = newListing.ToDto();
+                await _unitOfWork.Listings.AddAsync(newListing);
+                await _unitOfWork.CompleteAsync();
 
-            return CreatedAtAction(nameof(GetListingById), new { id = createdListingDto.Id }, createdListingDto);
+                var createdListingDto = newListing.ToDto();
+
+                return CreatedAtAction(nameof(GetListingById), new { id = createdListingDto.Id }, createdListingDto);
+            }
         }
         
         // DELETE: api/Listings/{id}
