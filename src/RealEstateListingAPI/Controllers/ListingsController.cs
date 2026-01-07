@@ -1,51 +1,93 @@
 using Microsoft.AspNetCore.Mvc;
-using RealEstateListingApi.Data;
 using RealEstateListingApi.Models;
-using System.Collections.Generic;
-using System.Linq;
+using RealEstateListing.Services.Interfaces;
+using RealEstateListingApi.Mapping;
 
 namespace RealEstateListingApi.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/Listings")]
     public class ListingsController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public ListingsController(ApplicationDbContext context)
+        public ListingsController(IUnitOfWork unitOfWork)
         {
-            _context = context;
+            _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
 
-        // Tag this operation as "Listings Retrieval"
+        // GET: api/Listings
         [HttpGet]
         [Tags("Listings Retrieval")]
-        public ActionResult<IEnumerable<Listing>> GetAllListings()
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<ListingDto>))]
+        public async Task<ActionResult<IEnumerable<ListingDto>>> GetAllListings()
         {
-            return _context.Listings.ToList();
+            var listings = await _unitOfWork.Listings.GetAllAsync();
+            var listingsDto = listings.Select(l => l.ToDto());
+            return Ok(listingsDto);
         }
 
-        // Tag this operation as "Listings Management"
-        [HttpPost]
-        [Tags("Listings Management")]
-        public ActionResult<Listing> AddListing([FromBody] Listing listing)
-        {
-            _context.Listings.Add(listing);
-            _context.SaveChanges();
-            return CreatedAtAction(nameof(GetListingById), new { id = listing.Id }, listing);
-        }
-
-        // Tag this operation as "Listings Retrieval"
+        // GET: api/Listings/{id}
         [HttpGet("{id}")]
         [Tags("Listings Retrieval")]
-        public ActionResult<Listing> GetListingById(string id)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ListingDto))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<ListingDto>> GetListingById(string id)
         {
-            var listing = _context.Listings.FirstOrDefault(l => l.Id == id);
+            var listing = await _unitOfWork.Listings.GetByIdAsync(id);
+
             if (listing == null)
             {
-                return NotFound();
+                return NotFound($"Listing with ID {id} not found.");
             }
-            return listing;
+
+            return Ok(listing.ToDto());
+        }
+
+        // POST: api/Listings
+        [HttpPost]
+        [Tags("Listings Management")]
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(ListingDto))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<ListingDto>> AddListing([FromBody] CreateListingDto createDto)
+        {
+            var exits = await _unitOfWork.Listings.GetByIdAsync(createDto.Id);
+            if (exits != null)
+            {
+                return BadRequest($"Listing with ID {createDto.Id} already exists.");
+            }
+            else
+            {
+                var newListing = createDto.ToEntity();
+
+                await _unitOfWork.Listings.AddAsync(newListing);
+                await _unitOfWork.CompleteAsync();
+
+                var createdListingDto = newListing.ToDto();
+
+                return CreatedAtAction(nameof(GetListingById), new { id = createdListingDto.Id }, createdListingDto);
+            }
+        }
+        
+        // DELETE: api/Listings/{id}
+        [HttpDelete("{id}")]
+        [Tags("Listings Management")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> DeleteListing(string id)
+        {
+            var listing = await _unitOfWork.Listings.GetByIdAsync(id);
+
+            if (listing == null)
+            {
+                return NotFound($"Listing with ID {id} not found.");
+            }
+
+            _unitOfWork.Listings.Delete(listing);
+            await _unitOfWork.CompleteAsync();
+
+            return NoContent();
         }
     }
 }
+

@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using RealEstateListingApi.Models;
+using RealEstateListing.Domain;
 
-namespace RealEstateListingApi.Data
+namespace RealEstateListing.Infrastructure.Data
 {
     public class ApplicationDbContext : DbContext
     {
