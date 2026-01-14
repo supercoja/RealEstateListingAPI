@@ -1,8 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using RealEstateListingApi.Data;
-using RealEstateListingApi.Models;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace RealEstateListingApi.Controllers
 {

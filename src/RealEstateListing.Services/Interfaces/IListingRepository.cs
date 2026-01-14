@@ -1,4 +1,5 @@
 using RealEstateListing.Domain;
+using RealEstateListing.Services.Interfaces;
 
 namespace RealEstateListingAPI.Services;
 

@@ -1,4 +1,4 @@
-﻿namespace RealEstateListingAPI.Services;
+﻿namespace RealEstateListing.Services.Interfaces;
 
 public interface IGenericRepository<T> where T : class
 {
