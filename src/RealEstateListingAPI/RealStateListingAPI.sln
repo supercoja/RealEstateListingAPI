@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealEstateListing.Services"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealEstateListing.Infrastructure", "..\RealEstateListing.Infrastructure\RealEstateListing.Infrastructure.csproj", "{72B6E76E-971E-47FC-A4D3-343B13DEFA39}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealEstateListing.Common", "..\RealEstateListing.Common\RealEstateListing.Common.csproj", "{24A7FCC1-30CA-496C-B9D1-364FA5CFE02D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{72B6E76E-971E-47FC-A4D3-343B13DEFA39}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72B6E76E-971E-47FC-A4D3-343B13DEFA39}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72B6E76E-971E-47FC-A4D3-343B13DEFA39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24A7FCC1-30CA-496C-B9D1-364FA5CFE02D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24A7FCC1-30CA-496C-B9D1-364FA5CFE02D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24A7FCC1-30CA-496C-B9D1-364FA5CFE02D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24A7FCC1-30CA-496C-B9D1-364FA5CFE02D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
