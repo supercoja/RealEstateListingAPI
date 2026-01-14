@@ -19,11 +19,4 @@ namespace RealEstateListingApi.Models
         public string? Description { get; set; }                                                                                                                                          
     } 
     
-    public class ListingDto
-    {
-        public string Id { get; set; } = string.Empty;
-        public string Title { get; set; } = string.Empty;
-        public decimal Price { get; set; } 
-        public string? Description { get; set; }
-    }
 }
