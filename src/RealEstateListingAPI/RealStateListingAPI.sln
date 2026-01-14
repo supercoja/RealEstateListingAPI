@@ -5,6 +5,10 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RealEstateListingApi", "RealEstateListingApi.csproj", "{966623B1-CFC6-4C86-85EA-FC8A81EC6DA3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealEstateListing.Domain", "..\RealEstateListing.Domain\RealEstateListing.Domain.csproj", "{E0917950-E8F0-47DE-BCD9-872ABBA48B6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealEstateListingAPI.Domain.Tests", "..\RealEstateListingAPI.Domain.Tests\RealEstateListingAPI.Domain.Tests.csproj", "{88136DBF-A241-4AD9-9F48-BE348F20E6D3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{966623B1-CFC6-4C86-85EA-FC8A81EC6DA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{966623B1-CFC6-4C86-85EA-FC8A81EC6DA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{966623B1-CFC6-4C86-85EA-FC8A81EC6DA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0917950-E8F0-47DE-BCD9-872ABBA48B6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0917950-E8F0-47DE-BCD9-872ABBA48B6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0917950-E8F0-47DE-BCD9-872ABBA48B6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0917950-E8F0-47DE-BCD9-872ABBA48B6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88136DBF-A241-4AD9-9F48-BE348F20E6D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88136DBF-A241-4AD9-9F48-BE348F20E6D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88136DBF-A241-4AD9-9F48-BE348F20E6D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88136DBF-A241-4AD9-9F48-BE348F20E6D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
