@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
+using RealEstateListing.Common.Api;
 using RealEstateListing.Infrastructure;
 using RealEstateListing.Infrastructure.Data;
 using RealEstateListing.Infrastructure.Repositories;
@@ -10,6 +11,23 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
+
+// Add default Envelope Answer for Model Invalid Response - No Need Model.IsValid on Controller
+builder.Services.Configure<Microsoft.AspNetCore.Mvc.ApiBehaviorOptions>(options =>
+{
+    options.InvalidModelStateResponseFactory = context =>
+    {
+        var errorMessages = context.ModelState.Values
+            .SelectMany(v => v.Errors)
+            .Select(e => e.ErrorMessage)
+            .ToList();
+
+        var errorEnvelope = Envelope.Error(errorMessages);
+
+        return new Microsoft.AspNetCore.Mvc.BadRequestObjectResult(errorEnvelope);
+    };
+});
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseInMemoryDatabase("RealEstateListings"));
 

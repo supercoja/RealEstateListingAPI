@@ -74,15 +74,6 @@ namespace RealEstateListingApi.Controllers
         [ProducesResponseType(typeof(Envelope<object>), (int)HttpStatusCode.InternalServerError)]
         public async Task<ActionResult<Envelope<ListingDto>>> AddListing([FromBody] CreateListingDto createDto)
         {
-            if (!ModelState.IsValid)
-            {
-                var errorMessages = ModelState.Values
-                    .SelectMany(v => v.Errors)
-                    .Select(e => e.ErrorMessage)
-                    .ToList();
-                return BadRequest(Envelope.Error(errorMessages));
-            }
-            
             try
             {
                 var exits = await _unitOfWork.Listings.GetByIdAsync(createDto.Id);
@@ -115,7 +106,7 @@ namespace RealEstateListingApi.Controllers
         // DELETE: api/Listings/{id}
         [HttpDelete("{id}")]
         [Tags("Listings Management")]
-        [ProducesResponseType((int)HttpStatusCode.NoContent)] 
+        [ProducesResponseType((int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(Envelope<object>), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Envelope<object>), (int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> DeleteListing(string id)
@@ -132,7 +123,7 @@ namespace RealEstateListingApi.Controllers
                 _unitOfWork.Listings.Delete(listing);
                 await _unitOfWork.CompleteAsync();
 
-                return NoContent(); 
+                return NoContent();
             }
             catch (Exception ex)
             {
