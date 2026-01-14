@@ -15,7 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\" />
+    <ProjectReference Include="..\RealEstateListing.Infrastructure\RealEstateListing.Infrastructure.csproj" />
+    <ProjectReference Include="..\RealEstateListing.Services\RealEstateListing.Services.csproj" />
   </ItemGroup>
 
 </Project>
