@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
+using RealEstateListing.Common.Api;
 using RealEstateListingApi.Mapping;
 using RealEstateListingApi.Models;
 using RealEstateListingAPI.Services;
+using System.Net;
 
 namespace RealEstateListingApi.Controllers
 {
@@ -21,30 +23,30 @@ namespace RealEstateListingApi.Controllers
         // GET: api/Listings
         [HttpGet]
         [Tags("Listings Retrieval")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<ListingDto>))]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<IEnumerable<ListingDto>>> GetAllListings()
+        [ProducesResponseType(typeof(Envelope<IEnumerable<ListingDto>>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(Envelope<object>), (int)HttpStatusCode.InternalServerError)]
+        public async Task<ActionResult<Envelope<IEnumerable<ListingDto>>>> GetAllListings()
         {
             try
             {
                 var listings = await _unitOfWork.Listings.GetAllAsync();
                 var listingsDto = listings.Select(l => l.ToDto());
-                return Ok(listingsDto);
+                return Ok(Envelope.Ok(listingsDto));
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "An error occurred while retrieving all listings.");
-                return StatusCode(500, "An internal server error occurred. Please try again later.");
+                return StatusCode((int)HttpStatusCode.InternalServerError, Envelope.Error("An internal server error occurred. Please try again later."));
             }
         }
 
         // GET: api/Listings/{id}
         [HttpGet("{id}")]
         [Tags("Listings Retrieval")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ListingDto))]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<ListingDto>> GetListingById(string id)
+        [ProducesResponseType(typeof(Envelope<ListingDto>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(Envelope<object>), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(Envelope<object>), (int)HttpStatusCode.InternalServerError)]
+        public async Task<ActionResult<Envelope<ListingDto>>> GetListingById(string id)
         {
             try
             {
@@ -52,29 +54,33 @@ namespace RealEstateListingApi.Controllers
 
                 if (listing == null)
                 {
-                    return NotFound($"Listing with ID {id} not found.");
+                    return NotFound(Envelope.Error($"Listing with ID {id} not found."));
                 }
 
-                return Ok(listing.ToDto());
+                return Ok(Envelope.Ok(listing.ToDto()));
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "An error occurred while retrieving listing with ID {ListingId}.", id);
-                return StatusCode(500, "An internal server error occurred. Please try again later.");
+                return StatusCode((int)HttpStatusCode.InternalServerError, Envelope.Error("An internal server error occurred. Please try again later."));
             }
         }
 
         // POST: api/Listings
         [HttpPost]
         [Tags("Listings Management")]
-        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(ListingDto))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<ListingDto>> AddListing([FromBody] CreateListingDto createDto)
+        [ProducesResponseType(typeof(Envelope<ListingDto>), (int)HttpStatusCode.Created)]
+        [ProducesResponseType(typeof(Envelope<object>), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(Envelope<object>), (int)HttpStatusCode.InternalServerError)]
+        public async Task<ActionResult<Envelope<ListingDto>>> AddListing([FromBody] CreateListingDto createDto)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                var errorMessages = ModelState.Values
+                    .SelectMany(v => v.Errors)
+                    .Select(e => e.ErrorMessage)
+                    .ToList();
+                return BadRequest(Envelope.Error(errorMessages));
             }
             
             try
@@ -82,7 +88,7 @@ namespace RealEstateListingApi.Controllers
                 var exits = await _unitOfWork.Listings.GetByIdAsync(createDto.Id);
                 if (exits != null)
                 {
-                    return BadRequest($"Listing with ID {createDto.Id} already exists.");
+                    return BadRequest(Envelope.Error($"Listing with ID {createDto.Id} already exists."));
                 }
 
                 var newListing = createDto.ToEntity();
@@ -92,26 +98,26 @@ namespace RealEstateListingApi.Controllers
 
                 var createdListingDto = newListing.ToDto();
 
-                return CreatedAtAction(nameof(GetListingById), new { id = createdListingDto.Id }, createdListingDto);
+                return CreatedAtAction(nameof(GetListingById), new { id = createdListingDto.Id }, Envelope.Ok(createdListingDto));
             }
-            catch (ArgumentException ex) 
+            catch (ArgumentException ex)
             {
                 _logger.LogWarning(ex, "Domain validation failed for new listing: {ErrorMessage}", ex.Message);
-                return BadRequest(new { error = ex.Message });
+                return BadRequest(Envelope.Error(ex.Message));
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 _logger.LogError(ex, "An error occurred while creating a new listing.");
-                return StatusCode(500, "An internal server error occurred. Please try again later.");
+                return StatusCode((int)HttpStatusCode.InternalServerError, Envelope.Error("An internal server error occurred. Please try again later."));
             }
         }
         
         // DELETE: api/Listings/{id}
         [HttpDelete("{id}")]
         [Tags("Listings Management")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType((int)HttpStatusCode.NoContent)] 
+        [ProducesResponseType(typeof(Envelope<object>), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(Envelope<object>), (int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> DeleteListing(string id)
         {
             try
@@ -120,18 +126,18 @@ namespace RealEstateListingApi.Controllers
 
                 if (listing == null)
                 {
-                    return NotFound($"Listing with ID {id} not found.");
+                    return NotFound(Envelope.Error($"Listing with ID {id} not found."));
                 }
 
                 _unitOfWork.Listings.Delete(listing);
                 await _unitOfWork.CompleteAsync();
 
-                return NoContent();
+                return NoContent(); 
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "An error occurred while deleting listing with ID {ListingId}.", id);
-                return StatusCode(500, "An internal server error occurred. Please try again later.");
+                return StatusCode((int)HttpStatusCode.InternalServerError, Envelope.Error("An internal server error occurred. Please try again later."));
             }
         }
     }

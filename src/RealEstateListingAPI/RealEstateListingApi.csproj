@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\RealEstateListing.Common\RealEstateListing.Common.csproj" />
     <ProjectReference Include="..\RealEstateListing.Infrastructure\RealEstateListing.Infrastructure.csproj" />
     <ProjectReference Include="..\RealEstateListing.Services\RealEstateListing.Services.csproj" />
   </ItemGroup>
