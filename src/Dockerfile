@@ -8,6 +8,8 @@ COPY ["RealEstateListing.Common/RealEstateListing.Common.csproj", "RealEstateLis
 COPY ["RealEstateListing.Infrastructure/RealEstateListing.Infrastructure.csproj", "RealEstateListing.Infrastructure/"]
 COPY ["RealEstateListing.Services/RealEstateListing.Services.csproj", "RealEstateListing.Services/"]
 COPY ["RealEstateListing.Domain/RealEstateListing.Domain.csproj", "RealEstateListing.Domain/"]
+COPY ["RealEstateListing.API.Tests/RealEstateListing.API.Tests.csproj", "RealEstateListing.API.Tests/"]
+COPY ["RealEstateListingAPI.Domain.Tests/RealEstateListingAPI.Domain.Tests.csproj", "RealEstateListingAPI.Domain.Tests/"]
 
 RUN dotnet restore "RealEstateListingAPI/RealStateListingAPI.sln"
 
@@ -22,4 +24,3 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "RealEstateListingApi.dll"]
-
