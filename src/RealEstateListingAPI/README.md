@@ -1,57 +1,103 @@
-# Real Estate Listing API - Screening Project for Senior C# Developers
+# Real Estate Listing API
 
-## Overview
-This Real Estate Listing API serves as a baseline project for assessing the skills of candidates applying for the Senior C# Developer position. It utilizes .NET 6 with an in-memory database managed by Entity Framework Core, and is documented using Swagger.
+This document provides information on the Real Estate Listing API, including instructions for running it locally using Docker Compose and a section for documenting API changes.
 
-## Purpose
-The project is designed to evaluate candidates' proficiency in enhancing an existing API framework by adhering to best practices in coding, implementing design patterns, and ensuring the application's scalability and maintainability.
+## API Changes
 
-## Technical Specifications
-- **Framework:** .NET 8
-- **Database:** In-Memory Database (Entity Framework Core)
-- **API Documentation:** Swagger/OpenAPI
+I have updated the folders to organize each project in his own folder, its a pattern that I follow
 
-## Project Setup
-To run this project locally:
+I added new projects for Domain, Services and Infrastructure
 
-1. Install the .NET SDK on your machine.
-2. Clone the repository to your preferred location.
-3. Open a terminal at the project's root directory.
-4. Run the following commands:
-   ```bash
-   dotnet restore
-   dotnet build
-   dotnet run `
+Domain holds the logic, Services are for creating contracts - abstracting with interfaces - 
+that later will be coupled with DI.
 
-1.  Navigate to `http://localhost:(5236 or 7289)/swagger` in your browser to interact with the API using Swagger UI.
+Infrastructure is to handle the DB and other Infra (like file manipulation in case needed).
+Used a Generic repository and UnitOfWork Pattern here.
 
-Candidate Enhancement Tasks
----------------------------
+I also added a validation with DTO's (to avoid "polluting" the application domain)
 
-As a candidate for the Senior C# Developer position, you are expected to expand upon the base project with the following implementations:
+Created the Envelope class to wrap all responses from API with a pattern. This allows
+to not validate Model inside the controllers, cause a middleware will handle the messages.
 
-### Input Validations
+I also created two Test projects, in order to Test/Validate the Domain and Also the Controllers (simple examples to validate Domain and Controllers with Tests)
 
--   **Enhance Input Validation:** Ensure all incoming data via API endpoints meet predefined formats and constraints. Implement robust validation logic to prevent invalid data submissions.
+This is basic the structure that I like to use to organize the Project.
 
-### Design Patterns
+## Getting Started with Docker Compose
 
--   **Dependency Injection (DI):** Utilize DI extensively to decouple the application's dependencies. Enhance the current setup by refining service registrations and their usages throughout the application.
--   **Repository Pattern:** Implement the Repository Pattern to abstract data access logic into reusable classes. This should help isolate the data layer, making the system easier to maintain and test.
--   **Unit of Work:** Incorporate the Unit of Work pattern to manage transactional operations. This ensures that operations involving multiple repositories are done within a single transaction context.a
+This section outlines how to get the Real Estate Listing API up and running on your local machine using Docker Compose.
 
-### CRUD Operations
+### Prerequisites
 
--   **Implement DELETE Functionality:** Add a DELETE endpoint to allow users to remove listings from the memory. Ensure that this operation adheres to RESTful standards and includes appropriate validation and error handling to manage the integrity of the database.
+Before you begin, ensure you have the following installed:
 
-### Dockerization
+*   **Docker Desktop**: Includes Docker Engine and Docker Compose. You can download it from [https://www.docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop).
 
--   **Containerize the Application:** Dockerize the application to ensure it can run in a containerized environment. This includes creating a `Dockerfile` and possibly a `docker-compose.yml` if necessary, to define how the application should be built and run in Docker.
+### Running the API with .net 8
+
+1.  **Navigate to the project directory:**
+    Open your terminal or command prompt and go to the directory containing the `docker-compose.yml` file (the `RealEstateListingAPI` directory):
+
+    cd RealEstateListingAPI
+
+2.  **Build and run the services:**
+    Execute the following command to build the Docker image for the API and start the service in detached mode:
+
+    docker-compose up --build -d
+    ```
+    *   `--build`: This flag ensures that the Docker image for the API is built (or re-built if changes have occurred) before starting the containers.
+    *   `-d`: This flag runs the containers in detached mode, meaning they will run in the background.
+
+3.  **Verify services are running:**
+    You can check the status of your running services with:
+
+    docker-compose ps
+
+4.  **Access the API:**
+    The Real Estate Listing API should now be accessible at `http://localhost:8080`.
+    For demo purposes, the Swagger is enabled with docker (which is 'Prod', not Development)
+    The Test for API can be accessed by http://localhost:8080/swagger
+
+5.  ** See Logs in Docker:**
+    You can check the logs for the container with:
+
+    docker logs --follows <containerId>
+
+### Stopping the Services
+
+To stop and remove the running containers, networks, and volumes created by `docker-compose up`, navigate to the `RealEstateListingAPI` directory and run:
+
+docker-compose down
 
 
-Contribution Guidelines
------------------------
+## Getting Started with .NET CLI
 
--   **Code Quality:** Write clean, scalable, and readable code that adheres to common C# coding standards.
--   **Testing:** Include unit tests for new features to ensure reliability and help prevent future regressions.
--   **Documentation:** Update documentation and comments as necessary to keep them relevant to the code changes.
+This section outlines how to run the Real Estate Listing API directly using the .NET 8 SDK command-line interface.
+
+### Prerequisites
+
+Before you begin, ensure you have the following installed:
+
+*   **.NET 8 SDK**: You can download it from [https://dotnet.microsoft.com/download/dotnet/8.0](https://dotnet.microsoft.com/download/dotnet/8.0).
+
+### Running the API
+
+1.  **Navigate to the root project directory:**
+    Open your terminal or command prompt and go to the root `RealEstateListingAPI` directory:
+
+    cd RealEstateListingAPI
+
+2.  **Run the API project:**
+    Execute the following command to build and run the API project:
+
+    dotnet run --project src/RealEstateListingAPI/RealEstateListingApi.csproj
+    ```
+
+3.  **Access the API:**
+    The API will typically run on `http://localhost:5000` or `https://localhost:5001` by default, but it will display the exact URLs in your console output when it starts. Look for messages like "Now listening on: http://localhost:XXXX".
+    The Test for API can be accessed by http://localhost:8080/swagger
+
+### Stopping the API
+
+To stop the running API, simply press `Ctrl+C` in the terminal where it is running.
+    
